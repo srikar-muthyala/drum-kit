@@ -1,15 +1,10 @@
-var arr = ["crash", "kick-bass", "snare", "tom-1", "tom-2", "tom-3", "tom-4"];
-// var arr = "crash";
 
-function hello() {
-  var audio = new Audio("sounds/" + arr + ".mp3");
-  audio.play();
-}
 for (var i = 0; i <= 6; i++) {
 
   document.querySelectorAll("button")[i].addEventListener("click", function() {
     var x = this.innerHTML;
     makesound(x);
+    buttonAnimation(x);
   });
 
 
@@ -19,6 +14,7 @@ for (var i = 0; i <= 6; i++) {
 document.addEventListener("keypress",function(e){
 var e = e.key;
 makesound(e);
+buttonAnimation(e);
 });
 
 
@@ -55,4 +51,14 @@ function makesound(key){
     default:console.log(e);
 
   }
+}
+
+function buttonAnimation(currentKey){
+  var activeButton = document.querySelector("."+currentKey);
+  // console.log(activeButton);
+  activeButton.classList.add("pressed");
+
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  },100);
 }
